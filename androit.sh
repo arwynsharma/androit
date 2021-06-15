@@ -164,7 +164,7 @@ tput setaf 7
 echo "  [*]Setup Done"
 
 #mobsf
-echo "[*]Setting up MOBSF"
+echo "  [*]Setting up MOBSF"
 tput setaf 7
 echo "  [i]This May take some time depending upon your network speed."
 git clone https://github.com/MobSF/Mobile-Security-Framework-MobSF.git /opt/androit/MOBSF -q
@@ -203,17 +203,28 @@ rm -rf ideaIC-2021.1.2.tar.gz
 tput setaf 1
 echo "[*]Setting up angr"
 pip install angr &>/dev/null
+tput setaf 7
+echo "  [*]Setup Done"
 
+tput setaf 1
 echo "[*]Setting up androguard"
 pip3 install androguard &>/dev/null
+tput setaf 7
+echo "  [*]Setup Done"
 
+tput setaf 1
 echo "[*]Setting up objection"
 pip3 install objection &>/dev/null
+tput setaf 7
+echo "  [*]Setup Done"
 
+tput setaf 1
 echo "[*]Setting up ab-decrypt"
 pip3 install ab-decrypt &>/dev/null
+tput setaf 7
+echo "  [*]Setup Done"
 
-
+tput setaf 1
 echo "[*]Setting up drozer"
 wget -q --show-progress https://github.com/FSecureLABS/drozer/releases/download/2.4.4/drozer_2.4.4.deb
 wget -q --show-progress https://github.com/FSecureLABS/drozer/releases/download/2.4.4/drozer-2.4.4-py2-none-any.whl
