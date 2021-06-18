@@ -69,6 +69,7 @@ do
 	tput cuu1;tput el
 	tput cuu1;tput el
 	tput cuu1;tput el
+	((count+=1))
 done
 tput cuu1;tput el
 rm -rf get-pip.py
