@@ -153,6 +153,13 @@ apt install --assume-yes pidcat &>/dev/null
 tput setaf 7
 echo "  [*]Setup Done"
 
+#scrcpy
+tput setaf 1
+echo "[*]Setting up scrcpy"
+apt install --assume-yes scrcpy &>/dev/null
+tput setaf 7
+echo "  [*]Setup Done"
+
 #apkx
 tput setaf 1
 echo "[*]Setting up apkx"
