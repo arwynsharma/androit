@@ -22,10 +22,13 @@ printf "\n"
 printf "\t \t        ───── ❝ Arwyn Sharma ❞ ─────\n"
 printf "\n"
 
+
 #variables
-SCRIPT_DIR=`pwd`
+current_DIR=`pwd`
+script_DIR="/opt/androit/"
 pip2=`which pip2`
 pip3=`which pip3`
+docker=`which docker`
 count=0
 
 tput setaf 1
@@ -83,7 +86,7 @@ tput cuu1;tput el
 tput setaf 1
 echo "[*]Setting Up android sdk"
 tput setaf 7
-wget -q --show-progress https://dl.google.com/android/repository/commandlinetools-linux-7302050_latest.zip
+wget -q --show-progress https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
 tput cuu1;tput el
 echo "  [*]Download finish"
 echo "  [*]Unzipping"
@@ -156,7 +159,11 @@ echo "  [*]Setup Done"
 #scrcpy
 tput setaf 1
 echo "[*]Setting up scrcpy"
-apt install --assume-yes scrcpy &>/dev/null
+sudo apt install ffmpeg libsdl2-2.0-0 adb wget gcc git pkg-config meson ninja-build libsdl2-dev libavcodec-dev libavdevice-dev libavformat-dev libavutil-dev libswresample-dev libusb-1.0-0 libusb-1.0-0-dev &>/dev/null
+git clone https://github.com/Genymobile/scrcpy  /opt/androit/scrcpy -q
+cd $script_DIR
+cd scrcpy
+./install_release.sh 2>/dev/null
 tput setaf 7
 echo "  [*]Setup Done"
 
@@ -171,17 +178,33 @@ rm -rf apkx
 tput setaf 7
 echo "  [*]Setup Done"
 
+
+
 #mobsf
 echo "  [*]Setting up MOBSF"
 tput setaf 7
-echo "  [i]This May take some time depending upon your network speed."
-git clone https://github.com/MobSF/Mobile-Security-Framework-MobSF.git /opt/androit/MOBSF -q
-cd /opt/androit/MOBSF
-./setup.sh &>/dev/null
+echo "  [i]This May take some time depending upon your network speed"
+if [[ $docker ]]; then
+	echo "  [i]Pulling up the docker image"
+	docker pull opensecurity/mobile-security-framework-mobsf:latest &> /dev/null
+else
+	echo "  [i]Installing the docker."
+	apt install --assume-yes docker.io &>/dev/null
+	sleep 2
+	tput cuu1;tput el
+	echo "  [i]Pulling up the docker image"
+	docker pull opensecurity/mobile-security-framework-mobsf:latest &> /dev/null
+fi
+
+
+
+docker pull opensecurity/mobile-security-framework-mobsf:latest &> /dev/null
 tput cuu1;tput el
 echo "  [*]Setup Done"
-echo "  [i]You can run MOBSF navigating to /opt/androit/MOBSF/ and executing run.sh"
-cd $SCRIPT_DIR
+echo "  [i]You can run MOBSF by running the docker image using below command"
+echo "  docker run -it --rm -p 8000:8000 opensecurity/mobile-security-framework-mobsf:latest"
+cd $current_DIR
+
 
 #androbug
 tput setaf 1
@@ -257,15 +280,10 @@ echo "[*]Setting up frida"
 pip3 install frida &>/dev/null
 pip3 install frida-tools &>/dev/null
 tput setaf 7
-wget -q --show-progress https://github.com/frida/frida/releases/download/14.2.18/frida-server-14.2.18-android-x86.xz
-unxz frida-server-14.2.18-android-x86.xz
 tput cuu1;tput el
 echo "  [*]frida setup Done"
-echo "  [*]Setting frida server"
 sleep 2
-mkdir /opt/androit/frida
-mv frida-server-14.2.18-android-x86 /opt/androit/frida/frida-server 
 tput cuu1;tput el
-echo "  [*]frida-server is available in /opt/androit/frida/android-server. Just push it to android to start using."
+echo "  [*] Download latest frida server from github and start using frida."
 
 tput setaf 1
