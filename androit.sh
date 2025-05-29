@@ -19,7 +19,7 @@ tput setaf 4
 printf "\n"
 printf "\t───── ❝ Script to setup android pentesting environment ❞ ─────\n"
 printf "\n"
-printf "\t \t        ───── ❝ Arwyn Sharma ❞ ─────\n"
+printf "\t \t        ───── ❝ Arvin Jangid ❞ ─────\n"
 printf "\n"
 
 
@@ -277,8 +277,8 @@ rm -rf drozer-2.4.4-py2-none-any.whl
 
 
 echo "[*]Setting up frida"
-pip3 install frida &>/dev/null
-pip3 install frida-tools &>/dev/null
+pip3 install frida --break-system-packages &>/dev/null
+pip3 install frida-tools --break-system-packages &>/dev/null
 tput setaf 7
 tput cuu1;tput el
 echo "  [*]frida setup Done"
